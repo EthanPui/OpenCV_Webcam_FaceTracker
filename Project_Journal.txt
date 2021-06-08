@@ -1,0 +1,5 @@
+8/6/21
+- Connected the EyeToy and downloaded all the drivers properly
+	- Driver installed by following this tutorial https://www.youtube.com/watch?v=ksGsoYWHgT0&ab_channel=NelsonMarcelino 
+- Starting on getting open CV code to work on arduino (plan to connect to pc working before switching to rasberry pie 3 as the alternative for the pc
+	- Using this tutorial https://www.learnrobotics.org/blog/face-tracking-opencv/?utm_source=youtube&utm_medium=description&utm_campaign=face_tracking_video currently to see if it works
