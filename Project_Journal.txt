@@ -7,3 +7,9 @@
 - Fixed issue with connecting arduino uno to computer (fix- the board is of a cheaper version therefore uses chip named CH340G)
 
 - Starting on putting all elements together for face detection on camera
+
+- Face detection complete 
+
+- Need to find some motors to use for following face detected
+
+- [Secondary Task] Object tracking and tracking of multiple faces
