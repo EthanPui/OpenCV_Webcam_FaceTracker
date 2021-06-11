@@ -1,0 +1,474 @@
+;==========================================================================
+; Modified by DuctTapedGoat 04/17/2012 Released 04/20/2012
+; Hercules Classic Webcam INF (for Windows 2000/XP)
+; Copyright(c) Guillemot Corporation 2007
+; File version: 1.0.0.2
+; Last modified: 2007-08-29
+;==========================================================================
+           
+[Version]
+LayoutFile=Layout.inf, Layout1.inf, Layout2.inf
+signature="$CHICAGO$"
+
+Class=Image
+ClassGUID={6bdd1fc6-810f-11d0-bec7-08002be2092f}
+Provider=%SWMfg%
+DriverVer=04/20/2012,8.3.7.4
+CatalogFile=hclassic.cat
+
+[Manufacturer]
+%HWMfg% = OVT,NTx86.5.1,NTx86.6.0, NTamd64, NTamd64.6.0, NTamd64.6.2, NTamd64.6.3
+
+[OVT]
+%USB.DeviceDesc% = OVT.PCamMic,USB\VID_05A9&PID_4519
+
+[OVT.NTx86.5.1]
+%USB.DeviceDesc% = OVT.PCamMic.XP,USB\VID_05A9&PID_4519
+
+[OVT.NTamd64]
+%USB.DeviceDesc% = OVT.PCamMic.x64,USB\VID_054C&PID_0154&MI_00
+
+[OVT.NTx86.6.0]
+%USB.DeviceDesc% = OVT.PCamMic.v32,USB\VID_05A9&PID_4519
+
+[OVT.NTamd64.6.0]
+%USB.DeviceDesc% = OVT.PCamMic.v64,USB\VID_054C&PID_0154&MI_00
+
+[OVT.NTamd64.6.2]
+%USB.DeviceDesc% = OVT.PCamMic.v64,USB\VID_054C&PID_0154&MI_00
+
+[OVT.NTamd64.6.3]
+%USB.DeviceDesc% = OVT.PCamMic.v64,USB\VID_054C&PID_0154&MI_00
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[SourceDisksNames]
+1 = %SrcDiskId%,,,
+
+[SourceDisksFiles]
+ov530vid.sys = 1,,
+ov530cmd.sys = 1,,
+ov530twn.ds = 1,,
+ov530dib.dll = 1,,
+ov530usd.dll = 1,,
+ov530ext.dll = 1,,
+ov530ext.ax = 1,,
+7648530.set = 1,,
+camfilt2.sys = 1,,
+
+[SourceDisksFiles.amd64]
+ov530vx.sys = 1,.\x64,
+msext534.ax = 1,.\x64,
+7648530MJPG.set = 1,.\x64,
+ov530twn.ds = 1,.\x64,
+camfilt2.sys = 1,.\x64,
+
+[DestinationDirs]
+DefaultDestDir = 11
+OVT.USBDCam0530.Files = 10,System32\Drivers
+OVT.USBDCam0530.2000= 10,System32\Drivers
+OVT.AP.CopyFiles = 10
+OVT.Setting.CopyFiles = 10,OvtCam
+OVT.Setting64.CopyFiles = 10,OvtCam
+OVT.USBDCam0531.Files = 10,System32\Drivers
+OVT.USBDCam0531.2000= 10,System32\Drivers
+OVT.ext64.CopyFiles = 10, SysWOw64
+OVT.TWAIN.CopyFiles = 10,TWAIN_32\OMCAM
+
+
+[OVT.PCamMic.NT]
+Include =	ks.inf, kscaptur.inf, ksfilter.inf
+Needs =      	KS.Registration,KSCAPTUR.Registration.NT
+AddReg =	OVT.USBDCam0530.AddReg, OVT.USBDCam0530.BasicSetting, OVT.0530.AddReg, OVT.2000.AddReg
+CopyFiles=	OVT.STI.CopyFiles, OVT.Setting.CopyFiles, OVT.TWAIN.CopyFiles, OVT.USBDCam0530.2000, OVT.AP.CopyFiles
+
+SubClass =	StillImage
+DeviceType =	2
+DeviceSubType =	0x0530
+Capabilities =	1
+DeviceData =	OVT.PCamMic.DeviceData
+ICMProfiles =	"sRGB Color Space Profile.icm"
+
+[OVT.PCamMic.XP]
+Include =	ks.inf, kscaptur.inf, ksfilter.inf
+Needs =		KS.Registration,KSCAPTUR.Registration.NT
+AddReg =	OVT.USBDCam0530.AddReg, OVT.USBDCam0530.BasicSetting, OVT.0530.AddReg, OVT.2000.AddReg
+CopyFiles =	OVT.STI.CopyFiles, OVT.Setting.CopyFiles, OVT.TWAIN.CopyFiles, OVT.USBDCam0530.2000, OVT.AP.CopyFiles
+
+SubClass =	StillImage
+DeviceType =	2
+DeviceSubType =	0x0530
+Capabilities =	1
+DeviceData =	OVT.PCMicXP.DeviceData
+ICMProfiles =	"sRGB Color Space Profile.icm"
+
+[OVT.PCamMic.x64]
+include =	ks.inf, kscaptur.inf, ksfilter.inf
+Needs =		KS.Registration,KSCAPTUR.Registration
+AddReg =	OVT.USBDCam0531.AddReg, OVT.USBDCam0531.BasicSetting, OVT.0531.AddReg
+CopyFiles =	OVT.ext.CopyFiles, OVT.ext64.CopyFiles, OVT.Setting64.CopyFiles, OVT.USBDCam0531.Files,OVT.USBDCam0531.2000, OVT.TWAIN.CopyFiles
+
+SubClass =	StillImage
+DeviceType =	3
+DeviceSubType =	0x0530
+Capabilities =	0x17
+DeviceData =	OVT.PCMicXP.DeviceData
+ICMProfiles =	"sRGB Color Space Profile.icm"
+UpdateInis =	OVT.USBDCam0531.Links
+
+[OVT.PCamMic.v32]
+Include =	ks.inf, kscaptur.inf, ksfilter.inf
+Needs =		KS.Registration,KSCAPTUR.Registration.NT,MSPCLOCK.Installation
+AddReg =	OVT.USBDCam0530.AddReg, OVT.USBDCam0530.BasicSetting, OVT.0530.AddReg, OVT.2000.AddReg
+CopyFiles =	OVT.STI.CopyFiles, OVT.Setting.CopyFiles, OVT.TWAIN.CopyFiles, OVT.USBDCam0530.2000, OVT.AP.CopyFiles
+SubClass=StillImage
+DeviceType=2
+DeviceSubType=0x0530
+Capabilities=1
+;Events=OVT.Events
+DeviceData=OVT.PCMicXP.DeviceData
+ICMProfiles="sRGB Color Space Profile.icm"
+;DelReg=OVT.DelReg
+
+[OVT.PCamMic.v64]
+include =	ks.inf, kscaptur.inf, ksfilter.inf
+Needs =		KS.Registration,KSCAPTUR.Registration.NT,MSPCLOCK.Installation
+AddReg =	OVT.USBDCam0531.AddReg, OVT.USBDCam0531.BasicSetting, OVT.0531.AddReg
+CopyFiles =	OVT.ext64.CopyFiles, OVT.Setting64.CopyFiles, OVT.USBDCam0531.Files, OVT.TWAIN.CopyFiles
+
+;SubClass=StillImage
+;DeviceType=3
+;DeviceSubType=0x0530
+;Capabilities=0x17
+;Events=OVT.Events
+;DeviceData=OVT.PCMicXP.DeviceData
+;ICMProfiles="sRGB Color Space Profile.icm"
+;UpdateInis= OVT.USBDCam0531.Links
+
+[OVT.PCamMic.NT.Interfaces]
+AddInterface = %KSCATEGORY_CAPTURE%,GLOBAL,OVT.PCamMic.AddIntf
+AddInterface = %KSCATEGORY_VIDEO%,GLOBAL,OVT.PCamMic.AddIntf
+
+[OVT.PCamMic.XP.Interfaces]
+AddInterface = %KSCATEGORY_CAPTURE%,GLOBAL,OVT.PCamMic.AddIntf
+AddInterface = %KSCATEGORY_VIDEO%,GLOBAL,OVT.PCamMic.AddIntf
+
+[OVT.PCamMic.x64.Interfaces]
+AddInterface = %KSCATEGORY_CAPTURE%,GLOBAL,OVT.PCamMic.AddIntf
+AddInterface = %KSCATEGORY_VIDEO%,GLOBAL,OVT.PCamMic.AddIntf
+
+[OVT.PCamMic.v32.Interfaces]
+AddInterface = %KSCATEGORY_CAPTURE%,GLOBAL,OVT.PCamMic.AddIntf
+AddInterface = %KSCATEGORY_VIDEO%,GLOBAL,OVT.PCamMic.AddIntf
+
+[OVT.PCamMic.v64.Interfaces]
+AddInterface = %KSCATEGORY_CAPTURE%,GLOBAL,OVT.PCamMic.AddIntf
+AddInterface = %KSCATEGORY_VIDEO%,GLOBAL,OVT.PCamMic.AddIntf
+
+[OVT.PCamMic.NT.Services]
+AddService = ovt530,0x00000002,OVT.AddService
+AddService = camfilt2,,OVT.FilterServiceInstall
+
+[OVT.PCamMic.XP.Services]
+AddService = ovt530,0x00000002,OVT.AddService
+AddService = camfilt2,,OVT.FilterServiceInstall
+
+[OVT.PCamMic.x64.Services]
+AddService = OM0530,0x00000002,OVT.V64.AddService
+AddService = camfilt2,,OVT.FilterServiceInstall
+
+[OVT.PCamMic.v32.Services]
+AddService = ovt530,0x00000002,OVT.AddService
+AddService = camfilt2,,OVT.FilterServiceInstall
+
+[OVT.PCamMic.v64.Services]
+AddService = OM0530,0x00000002,OVT.V64.AddService
+AddService = camfilt2,,OVT.FilterServiceInstall
+
+[OVT.FilterServiceInstall]
+ServiceType = 1
+ErrorControl = 1
+StartType = 3
+ServiceBinary = %12%\camfilt2.sys
+
+[OVT.PCamMic.NT.HW]
+AddReg = OVT.PCamMic.FilterAddReg
+
+[OVT.PCamMic.XP.HW]
+AddReg = OVT.PCamMic.FilterAddReg
+
+[OVT.PCamMic.x64.HW]
+AddReg = OVT.PCamMic.FilterAddReg
+
+[OVT.PCamMic.v32.HW]
+AddReg = OVT.PCamMic.FilterAddReg
+
+[OVT.PCamMic.v64.HW]
+AddReg = OVT.PCamMic.FilterAddReg
+
+[OVT.PCamMic.FilterAddReg]
+HKR,,UpperFilters,0x00010000,camfilt2
+
+
+[OVT.PCamMic.AddIntf]
+AddReg=OVT.PCamMic.AddIntf.AddReg
+         
+[OVT.PCamMic.AddIntf.AddReg]
+HKR,,CLSID,,%ProxyVCap.CLSID%
+HKR,,FriendlyName,,%USB.DeviceDesc%
+HKR,,ExtensionDLL,,%OVT_ExtensionDLL%
+
+[OVT.PCamMic.DeviceData]
+TwainDS=%TwainDsName%
+SpecialInfo=""
+
+[OVT.PCMicXP.DeviceData]
+TwainDS=%TwainDsName%
+Server=local
+UI DLL=sti.dll
+UI Class ID={4DB1AD10-3391-11D2-9A33-00C04FA36145}
+
+
+[OVT.USBDCam0530.AddReg]
+HKR,,HardwareConfig,1,1
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,ov530vid.sys
+HKR,,OkToHibernate,3,01
+;HKR,,PageOutWhenUnopened,3,01
+;HKR,,PowerDownWhenUnopened,3,01
+;HKR,,DontSuspendIfStreamsAreRunning,3,01
+HKR,,USDClass,,"{52E320BC-2F9A-476c-BE4E-AC3EB7D5B7D7}"
+HKCR,CLSID\{52E320BC-2F9A-476c-BE4E-AC3EB7D5B7D7} ,,,"OmniVision Dual Mode USB Camera OV530 USD"
+HKCR,CLSID\{52E320BC-2F9A-476c-BE4E-AC3EB7D5B7D7}\InProcServer32,,,%11%\ov530usd.dll
+HKCR,CLSID\{52E320BC-2F9A-476c-BE4E-AC3EB7D5B7D7}\InProcServer32,ThreadingModel,,"Both"
+HKR,Events\AutoLaunch, LaunchApplications,,%ov530cap%
+;
+;  Custome Property Interface
+;
+HKCR,CLSID\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED} ,,,"OmniVision Dual Mode USB Camera OV530"
+HKCR,CLSID\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED}\InProcServer32,,,ov530ext.ax
+HKCR,CLSID\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED}\InProcServer32,ThreadingModel,,"Both"
+;
+;
+; CLSID_VideoProcAmp Property Page
+HKCR,CLSID\{5A919040-5DA1-440e-AFEF-785BF4C60E06},,,%PropPage_CustomVideoProcAmp%
+HKCR,CLSID\{5A919040-5DA1-440e-AFEF-785BF4C60E06}\InprocServer32,,,ov530ext.ax
+HKCR,CLSID\{5A919040-5DA1-440e-AFEF-785BF4C60E06}\InprocServer32,ThreadingModel,,Both
+
+; CLSID_CameraControl Property Page
+HKCR,CLSID\{5A919041-5DA1-440e-AFEF-785BF4C60E06},,,%PropPage_CustomCameraControl%
+HKCR,CLSID\{5A919041-5DA1-440e-AFEF-785BF4C60E06}\InprocServer32,,,ov530ext.ax
+HKCR,CLSID\{5A919041-5DA1-440e-AFEF-785BF4C60E06}\InprocServer32,ThreadingModel,,Both
+;
+; Associate the property set with the property page
+HKLM,System\CurrentControlSet\Control\MediaSets\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED}\PropertyPages\{5A919040-5DA1-440e-AFEF-785BF4C60E06},,,%PropPage_CustomVideoProcAmp%
+HKLM,System\CurrentControlSet\Control\MediaSets\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED}\PropertyPages\{5A919041-5DA1-440e-AFEF-785BF4C60E06},,,%PropPage_CustomCameraControl%
+
+[OVT.USBDCam0530.BasicSetting]
+;
+;
+HKR,,ModulFileName,,ov530twn.ds
+HKR,%CamSet%, StillSupportType, 0x10001, 2
+;HKR,%CamSet%, CustomID, 0x10001, 2
+HKR,%CamSet%, EnableAutoLaunch, 1, 57,23,ff
+HKR,%CamSet%, DisableAutoLaunch, 1, 57,23,ff
+HKR,%CamSet%, ClearSnapButton, 1, 57,03,02
+HKR,%CamSet%, CheckAutoLaunch, 1, 57,10,10
+HKR,%CamSet%, EnableAutoClose, 0x10001,1
+;HKR,%CamSet%, UseGpio0, 0x10001,1
+;HKR,%CamSet%, SupportEvent, 0x10001, 1
+HKR,%CamSet%, EnableSystem, 1, 5a,6d,FF, 53,9b,9f, 54,ff,ff, 5d,03,ff, 49,01,ff, \
+48,00,ff, 72,ee,ff
+;;HKR,%CamSet%, EnableSystem, 1, 53,E1,FF, 5d, 03, ff
+HKR,%CamSet%, DisableSystem, 1, 53,9b,9b
+HKR,%CamSet%, ResetUsb, 1, 51,0f,ff, 51,0,ff
+HKR,%CamSet%, SetUsbInit, 1, 51,0f,ff, 51,00,ff, 22,00,ff
+HKR,%CamSet%, SetUsbWork, 1, 51,0f,ff, 51,00,ff, 22,1d,ff
+HKR,%CamSet%, TurnOnLed, 1, 71,01,01
+HKR,%CamSet%, TurnOffLed, 1, 71,00,01
+HKR,%CamSet%, BlockStream, 1, 51,0f,ff
+HKR,%CamSet%, StartStream, 1, 51,00,ff
+HKR,%CamSet%, BandwidthAllocateRule, 0x10001, 0
+HKR,%CamSet%, FileDir,, \DosDevices\%10%\OvtCam
+;HKR,%CamSet%, LoadSettingOnce,0x10001,0
+
+[OVT.0530.AddReg]
+HKR,%CamSet%\CamSettingFiles,7648530,,7648530.set
+HKR,%CamSet%, IdleAltSetting, 0x10001, 0x0
+;; for remove program group
+;HKR,,ShortCutString,,%0530%
+
+
+[OVT.USBDCam0531.AddReg]
+HKR,,HardwareConfig,1,1
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,ov530vx.sys
+HKR,,OkToHibernate,3,01
+;
+;  Custome Property Interface
+;
+HKCR,CLSID\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED} ,,,"OV530X USB Camera"
+HKCR,CLSID\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED}\InProcServer32,,,msext534.ax
+HKCR,CLSID\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED}\InProcServer32,ThreadingModel,,"Both"
+HKCR,Wow6432Node\CLSID\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED},,,"OV530X USB Camera"
+HKCR,Wow6432Node\CLSID\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED}\InprocServer32,,,msext534.ax
+HKCR,Wow6432Node\CLSID\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED}\InprocServer32,ThreadingModel,,"Both"
+;
+; CLSID_VideoProcAmp Property Page
+HKCR,CLSID\{467E24F1-7212-4269-98CE-4B096565D3AE},,,%PropPage_CustomVideoProcAmp%
+HKCR,CLSID\{467E24F1-7212-4269-98CE-4B096565D3AE}\InprocServer32,,,msext534.ax
+HKCR,CLSID\{467E24F1-7212-4269-98CE-4B096565D3AE}\InprocServer32,ThreadingModel,,Both
+HKCR,Wow6432Node\CLSID\{467E24F1-7212-4269-98CE-4B096565D3AE},,,%PropPage_CustomVideoProcAmp%
+HKCR,Wow6432Node\CLSID\{467E24F1-7212-4269-98CE-4B096565D3AE}\InprocServer32,,,msext534.ax
+HKCR,Wow6432Node\CLSID\{467E24F1-7212-4269-98CE-4B096565D3AE}\InprocServer32,ThreadingModel,,Both
+
+; CLSID_CameraControl Property Page
+HKCR,CLSID\{467E24F2-7212-4269-98CE-4B096565D3AE},,,%PropPage_CustomCameraControl%
+HKCR,CLSID\{467E24F2-7212-4269-98CE-4B096565D3AE}\InprocServer32,,,msext534.ax
+HKCR,CLSID\{467E24F2-7212-4269-98CE-4B096565D3AE}\InprocServer32,ThreadingModel,,Both
+HKCR,Wow6432Node\CLSID\{467E24F2-7212-4269-98CE-4B096565D3AE},,,%PropPage_CustomCameraControl%
+HKCR,Wow6432Node\CLSID\{467E24F2-7212-4269-98CE-4B096565D3AE}\InprocServer32,,,msext534.ax
+HKCR,Wow6432Node\CLSID\{467E24F2-7212-4269-98CE-4B096565D3AE}\InprocServer32,ThreadingModel,,Both
+;
+; Associate the property set with the property page
+HKLM,System\CurrentControlSet\Control\MediaSets\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED}\PropertyPages\{467E24F1-7212-4269-98CE-4B096565D3AE},,,%PropPage_CustomVideoProcAmp%
+HKLM,System\CurrentControlSet\Control\MediaSets\{E7FCE081-60A0-4dda-844B-7DFCBACCA9ED}\PropertyPages\{467E24F2-7212-4269-98CE-4B096565D3AE},,,%PropPage_CustomCameraControl%
+
+
+[OVT.USBDCam0531.BasicSetting]
+HKR,,ModulFileName,,ov530twn.ds
+HKR,%CamSet%, StillSupportType, 0x10001, 2
+;HKR,%CamSet%, CustomID, 0x10001, 2
+HKR,%CamSet%, EnableAutoLaunch, 1, 57,23,ff
+HKR,%CamSet%, DisableAutoLaunch, 1, 57,23,ff
+HKR,%CamSet%, ClearSnapButton, 1, 57,03,02
+HKR,%CamSet%, CheckAutoLaunch, 1, 57,10,10
+HKR,%CamSet%, EnableAutoClose, 0x10001,1
+;HKR,%CamSet%, UseGpio0, 0x10001,1
+;HKR,%CamSet%, SupportEvent, 0x10001, 1
+HKR,%CamSet%, EnableSystem, 1, 5a,6d,FF, 53,9b,9f, 54,ff,ff, 5d,03,ff, 49,01,ff, \
+ 48,00,ff, 72,ee,ff
+
+;;HKR,%CamSet%, EnableSystem, 1, 53,E1,FF, 5d, 03, ff
+HKR,%CamSet%, DisableSystem, 1, 53,9b,9b
+HKR,%CamSet%, ResetUsb, 1, 51,0f,ff, 51,0,ff
+HKR,%CamSet%, SetUsbInit, 1, 51,0f,ff, 51,00,ff, 22,00,ff
+HKR,%CamSet%, SetUsbWork, 1, 51,0f,ff, 51,00,ff, 22,1d,ff
+HKR,%CamSet%, TurnOnLed, 1, 71,01,01
+HKR,%CamSet%, TurnOffLed, 1, 71,00,01
+HKR,%CamSet%, BlockStream, 1, 51,0f,ff
+HKR,%CamSet%, StartStream, 1, 51,00,ff
+HKR,%CamSet%, BandwidthAllocateRule, 0x10001, 0
+HKR,%CamSet%, FileDir,, \DosDevices\%10%\OvtCam
+;HKR,%CamSet%, LoadSettingOnce,0x10001,0
+
+[OVT.0531.AddReg]
+HKR,%CamSet%\CamSettingFiles,2631APL,,7648530MJPG.set
+HKR,%CamSet%, IdleAltSetting, 0x10001, 0x0
+
+[OVT.2000.AddReg]
+;The path must consist with LegencyPath setting in each .SET file.
+;HKR,%76BGDP%,LegencyPath,,\Registry\Machine\Software\OmniVision\PC Camera
+HKLM,"Software\OmniVision\PC Camera","PushModeEvent",,"Enable"
+
+
+[OVT.AddService]
+DisplayName   = %USB.DeviceDesc%
+ServiceType   = %SERVICE_KERNEL_DRIVER%
+StartType     = %SERVICE_DEMAND_START%
+ErrorControl  = %SERVICE_ERROR_NORMAL%
+ServiceBinary = %10%\System32\Drivers\ov530vid.sys
+
+[OVT.V64.AddService]
+DisplayName   = %USB.DeviceDesc%
+ServiceType   = %SERVICE_KERNEL_DRIVER%
+StartType     = %SERVICE_DEMAND_START%
+ErrorControl  = %SERVICE_ERROR_NORMAL%
+ServiceBinary = %10%\System32\Drivers\ov530vx.sys
+
+
+[OVT.USBDCam0530.Links]
+
+[OVT.USBDCam0531.Links]
+system.ini,drivers32,,"VIDC.I420=msh263.drv"
+
+
+[OVT.STI.CopyFiles]
+ov530usd.dll 
+ov530ext.dll 
+ov530ext.ax 
+
+[OVT.AP.CopyFiles]
+ov530dib.dll 
+
+[OVT.USBDCam0530.Files]
+ov530vid.sys 
+ov530cmd.sys 
+camfilt2.sys
+stream.sys  ;; add for win98(se)
+
+[OVT.USBDCam0530.2000]
+ov530vid.sys 
+ov530cmd.sys 
+camfilt2.sys
+
+[OVT.Setting.CopyFiles]
+7648530.set
+
+[OVT.Setting64.CopyFiles]
+7648530MJPG.set
+
+[OVT.ext64.CopyFiles]
+msext534.ax
+
+[OVT.ext.CopyFiles]
+msext534.ax
+
+[OVT.USBDCam0531.Files]
+ov530vx.sys
+camfilt2.sys
+
+[OVT.USBDCam0531.2000]
+ov530vx.sys
+camfilt2.sys
+
+[OVT.TWAIN.CopyFiles]
+ov530twn.ds
+
+[OVT.CopyCodec]
+msh263.drv
+
+[Strings]
+
+ProxyVCap.CLSID="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSCATEGORY_CAPTURE="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_VIDEO="{6994ad05-93ef-11D0-A3cc-00A0C9223196}"
+SERVICE_KERNEL_DRIVER=1
+SERVICE_DEMAND_START=3
+SERVICE_ERROR_NORMAL=1
+
+; IHV's extension DLL
+OVT_ExtensionDLL = "ov530ext.dll"
+
+SWMfg="DuctTapedGoat"
+
+HWMfg="Namtai"
+USB.DeviceDesc="EyeToy USB Camera (for PlayStation 2)"
+StillCaptured = "Hercules Classic Webcam Still Image Captured"
+AutoLaunch = "Hercules Classic Webcam Launch Image Application"
+;AutoClose = "Hercules Classic Webcam Close Application"
+ov530sti = "Hercules Classic Webcam Still image capture A/P"
+ov530cap = "Hercules Classic Webcam WDM Capture A/P"
+CamSet	=	"CameraSetting"
+
+PropPage_CustomVideoProcAmp = "Hercules VideoProcAmp Property Page"
+PropPage_CustomCameraControl = "Hercules CameraControl Property Page"
+
+
+0530="OmniVision\Dual Mode USB Camera OV530"
+WDMCAPTURE="Hercules Classic Webcam WDM Capture"
+VFWCAPTURE="Hercules Classic Webcam VFW Capture"
+Run="SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
+TwainDsName = "Hercules Classic Webcam"
+SrcDiskId = "Hercules Classic WebCam Driver Disk"
