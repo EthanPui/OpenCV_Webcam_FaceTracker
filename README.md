@@ -1,6 +1,6 @@
 ### OpenCV_Webcam_FaceTracker
 
-Basically, the webcam sends video frames to OpenCV running on a Windows PC. If OpenCV detects a face it will track it and calculate its center's X,Y coordinates. The coordinates are then passed on to the Arduino via a serial USB connection. The Arduino controls the movement of the webcam with the help of two pan/tilt servos to follow the detected face.
+The webcam sends video frames to OpenCV running on a Windows PC. If OpenCV detects a face it will track it and calculate its center's X,Y coordinates. The coordinates are then passed on to the Arduino via a serial USB connection. The Arduino controls the movement of the webcam with the help of two pan/tilt servos to follow the detected face.
 
 Useful Resources:
 1. http://www.kamleshpanchal.com/raspberrypi/real-time-face-detection-with-raspberry-pi/
@@ -9,10 +9,7 @@ Useful Resources:
 
 ### Setup
 
-1.Install all the dependencies it has 
-: opencv 2
-: python 2.7
-: flask
+1.Install all the required dependencies 
 
 2.Create new data for determing the face to track by executing create_data.py file
 
